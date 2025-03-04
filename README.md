@@ -89,6 +89,8 @@ it('exports snapshot', async () => {
 
 </details>
 
+[A more complete usage example in Shiki](https://github.com/shikijs/shiki/commit/ece4b02a82febea02349ad200e0d07ab59a6a304)
+
 ## How it works
 
 When `getPackageExportsManifest` is called, it will:
