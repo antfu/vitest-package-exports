@@ -8,6 +8,28 @@
 
 An Vitest util to get all exported APIs of a package and prevent unintended breaking changes.
 
+## Install
+
+```bash
+npm i -D vitest-package-exports
+```
+
+Update your Vitest config:
+
+```ts
+export default defineConfig({
+  test: {
+    server: {
+      deps: {
+        inline: [
+          'vitest-package-exports',
+        ],
+      },
+    },
+  },
+})
+```
+
 ## Usage
 
 A typical usage is to make a snapshot to freeze the exported APIs of a package:
@@ -35,6 +57,10 @@ it('exports snapshot', async () => {
 ```
 
 Everytime you adding or remove the exported APIs, the snapshot will break and requires explicit review. This would help you to catch unintended breaking changes, or unintentional internal leaks.
+
+For example, if I renamed the `getPackageExportsManifest` function to `getPackageExportsManifestRenamed`, the test will fail until I update the snapshot:
+
+![Image](https://github.com/user-attachments/assets/c1d14e7f-e3c3-48f5-ad3e-8d35884b26d0)
 
 ## How it works
 
