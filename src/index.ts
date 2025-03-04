@@ -23,6 +23,11 @@ export interface PackageExportsManifestOptions {
   importMode?: 'package' | 'dist' | 'src'
 
   /**
+   * Resolve the export entries, filter or modify the entries.
+   */
+  resolveExportEntries?: (entries: [entry: string, path: string][]) => [entry: string, path: string][]
+
+  /**
    * Get a representation of a value.
    *
    * @default 'value => typeof value'
@@ -79,10 +84,12 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
   }
 
   const exportsObject = pkg.exports || { '.': './dist/index.mjs' }
-  const exportsEntries = Object.entries(exportsObject)
+  let exportsEntries = Object.entries(exportsObject)
     .filter(i => i[1] && !i[0].includes('*'))
-    .map(i => [i[0].replace(/^\.\//, ''), resolveExportsValue(i[1] as any) as string] as const)
+    .map(i => [i[0].replace(/^\.\//, ''), resolveExportsValue(i[1] as any) as string] as [string, string])
     .filter(i => i[1] && i[0] !== 'package.json')
+
+  exportsEntries = options.resolveExportEntries?.(exportsEntries) ?? exportsEntries
 
   const exports = Object.fromEntries(
     await Promise.all(
