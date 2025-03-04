@@ -62,6 +62,33 @@ For example, if I renamed the `getPackageExportsManifest` function to `getPackag
 
 ![Image](https://github.com/user-attachments/assets/c1d14e7f-e3c3-48f5-ad3e-8d35884b26d0)
 
+<details>
+<summary>If you want a cleaner snapshot:</summary>
+
+You can use `js-yaml` to format the object:
+
+```ts
+import { fileURLToPath } from 'node:url'
+import yaml from 'js-yaml' // <---
+import { expect, it } from 'vitest'
+import { getPackageExportsManifest } from 'vitest-package-exports'
+
+it('exports snapshot', async () => {
+  const manifest = await getPackageExportsManifest({
+    importMode: 'src',
+    cwd: fileURLToPath(import.meta.url),
+  })
+
+  expect(yaml.dump(manifest.exports)) // <---
+    .toMatchInlineSnapshot(`
+      .:
+        getPackageExportsManifest: function
+    `)
+})
+```
+
+</details>
+
 ## How it works
 
 When `getPackageExportsManifest` is called, it will:
