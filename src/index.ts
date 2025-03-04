@@ -85,9 +85,9 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
 
   const exportsObject = pkg.exports || { '.': './dist/index.mjs' }
   let exportsEntries = Object.entries(exportsObject)
-    .filter(i => i[1] && !i[0].includes('*'))
-    .map(i => [i[0].replace(/^\.\//, ''), resolveExportsValue(i[1] as any) as string] as [string, string])
-    .filter(i => i[1] && i[0] !== 'package.json')
+    .filter(i => i[1] && !i[0].includes('*') && i[0] !== 'package.json' && i[0] !== './package.json')
+    .map(i => [i[0], resolveExportsValue(i[1] as any) as string] as [string, string])
+    .filter(i => i[1])
 
   exportsEntries = options.resolveExportEntries?.(exportsEntries) ?? exportsEntries
 

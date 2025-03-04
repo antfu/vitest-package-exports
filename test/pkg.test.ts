@@ -64,7 +64,7 @@ it('vite', async () => {
             "transformWithEsbuild": "function",
             "version": "string",
           },
-          "module-runner": {
+          "./module-runner": {
             "ESModulesEvaluator": "function",
             "EvaluatedModules": "function",
             "ModuleRunner": "function",
@@ -101,14 +101,14 @@ it('rollup', async () => {
             "rollup": "function",
             "watch": "function",
           },
-          "getLogFilter": {
+          "./getLogFilter": {
             "getLogFilter": "function",
           },
-          "loadConfigFile": {
+          "./loadConfigFile": {
             "default": "object",
             "loadConfigFile": "function",
           },
-          "parseAst": {
+          "./parseAst": {
             "parseAst": "function",
             "parseAstAsync": "function",
           },
