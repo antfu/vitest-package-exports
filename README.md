@@ -89,13 +89,11 @@ it('exports snapshot', async () => {
 
 </details>
 
-[A more complete usage example in Shiki](https://github.com/shikijs/shiki/commit/ece4b02a82febea02349ad200e0d07ab59a6a304)
-
 ### Monorepo Usage
 
 Since this utility is only a function, you can compose it freely to fit your monorepo structure.
 
-If you want to snapshot all packages in your pnpm monorepo, here is an example we use in VueUse:
+If you want to snapshot all packages in your pnpm monorepo, here is an example [we use in VueUse](https://github.com/vueuse/vueuse/commit/5bf4f3cb181717ba5db0d0f7996e887c35d99fce):
 
 ```ts
 import yaml from 'js-yaml'
