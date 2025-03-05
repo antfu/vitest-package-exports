@@ -101,8 +101,17 @@ When `getPackageExportsManifest` is called, it will:
   - `package`: Import from package name directly, for example `import('vitest/config')`
   - `dist`: Import the module from the defined `exports` entry, for example `import('./dist/config.mjs')`
   - `src`: Import the module from the `src` directory (replace `dist` with `src`), for example `import('./src/config.ts')`
+    - This assume your codebase is structure as `src` -> `dist` with one-to-one mapping. If you have a custom build process, provide `resolveSourcePath` option to write your own mapping logic.
 4. For each entry, it will import the module at runtime to get the exports object. Essentially `Object.keys(await import(entry))` (so it's better to only use this in sandboxed environments like Vitest)
 5. Return the manifest of the exported APIs.
+
+## FAQ
+
+### Does this Requires Vitest?
+
+Actually not necessary, this utility does not directly depend on Vitest, but it's designed to work with Vitest. Internally it use dynamic `import()` to get the exports object, it would work best in Vitest as it will provide proper resolution of the import path, while also supporting your alias config if any.
+
+I named this under `vitest-` to give a clear expection. Feel free to use it in other context or even plain Node.js, but no guarantee from our side. Please do your own research.
 
 ## Sponsors
 
