@@ -46,7 +46,7 @@ export interface PackageExportsManifestOptions {
   /**
    * Resolve the value of the `exports` entry in `package.json`, and return a path to import.
    *
-   * @default `value => value.default || value.import || value.require`
+   * @default `value => value['module-sync'] || value.default || value.import || value.module || value.require`
    */
   resolveExportsValue?: (value: string | Record<string, string>) => string | undefined
 }
@@ -68,7 +68,7 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
     resolveSourcePath = dist => dist.replace('dist', 'src').replace(/\.[mc]?js$/, ''),
     resolveExportsValue = value => typeof value === 'string'
       ? value
-      : value.default || value.import || value.require,
+      : value['module-sync'] || value.default || value.import || value.module || value.require,
   } = options
 
   const path = await findUp('package.json', {
