@@ -6,7 +6,7 @@
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
 
-An Vitest util to get all exported APIs of a package and prevent unintended breaking changes.
+A Vitest util to get all exported APIs of a package and prevent unintended breaking changes.
 
 ## Install
 
