@@ -13,10 +13,14 @@
     "url": "git+https://github.com/antfu/vitest-package-exports.git"
   },
   "bugs": "https://github.com/antfu/vitest-package-exports/issues",
-  "keywords": [],
+  "keywords": [
+    "vitest",
+    "snapshot"
+  ],
   "sideEffects": false,
   "exports": {
-    ".": "./dist/index.mjs"
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -25,14 +29,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "tsdown",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
-    "release": "bumpp && pnpm publish",
+    "release": "bumpp",
     "start": "tsx src/index.ts",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
@@ -50,9 +53,9 @@
     "pnpm": "^10.26.1",
     "rollup": "^4.54.0",
     "simple-git-hooks": "^2.13.1",
+    "tsdown": "^0.18.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "unbuild": "^3.6.1",
     "vite": "^7.3.0",
     "vitest": "^4.0.16"
   },
