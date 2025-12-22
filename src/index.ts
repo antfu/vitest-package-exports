@@ -49,6 +49,11 @@ export interface PackageExportsManifestOptions {
    * @default `value => value['module-sync'] || value.default || value.import || value.module || value.require`
    */
   resolveExportsValue?: (value: string | Record<string, string>) => string | undefined
+
+  /**
+   * Determine if an entry should be ignored.
+   */
+  shouldIgnoreEntry?: ({ entry, path }: { entry: string, path: string }) => boolean
 }
 
 export interface PackageExportsManifest {
@@ -69,6 +74,7 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
     resolveExportsValue = value => typeof value === 'string'
       ? value
       : value['module-sync'] || value.default || value.import || value.module || value.require,
+    shouldIgnoreEntry = () => false,
   } = options
 
   const path = await findUp('package.json', {
@@ -85,7 +91,7 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
 
   const exportsObject = pkg.exports || { '.': './dist/index.mjs' }
   let exportsEntries = Object.entries(exportsObject)
-    .filter(i => i[1] && !i[0].includes('*') && i[0] !== 'package.json' && i[0] !== './package.json')
+    .filter(i => i[1] && !i[0].includes('*') && i[0] !== 'package.json' && i[0] !== './package.json' && !shouldIgnoreEntry({ entry: i[0], path: i[1] as string }))
     .map(i => [i[0], resolveExportsValue(i[1] as any) as string] as [string, string])
     .filter(i => i[1])
 
