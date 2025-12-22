@@ -18,6 +18,7 @@ it('vite', async () => {
             "build": "function",
             "buildErrorMessage": "function",
             "createBuilder": "function",
+            "createFetchableDevEnvironment": "function",
             "createFilter": "function",
             "createIdResolver": "function",
             "createLogger": "function",
@@ -29,6 +30,7 @@ it('vite', async () => {
             "defaultAllowedOrigins": "object",
             "defaultClientConditions": "object",
             "defaultClientMainFields": "object",
+            "defaultExternalConditions": "object",
             "defaultServerConditions": "object",
             "defaultServerMainFields": "object",
             "defineConfig": "function",
@@ -36,6 +38,7 @@ it('vite', async () => {
             "fetchModule": "function",
             "formatPostcssSourceMap": "function",
             "isCSSRequest": "function",
+            "isFetchableDevEnvironment": "function",
             "isFileLoadingAllowed": "function",
             "isFileServingAllowed": "function",
             "isRunnableDevEnvironment": "function",
@@ -59,8 +62,6 @@ it('vite', async () => {
             "searchForWorkspaceRoot": "function",
             "send": "function",
             "sortUserPlugins": "function",
-            "splitVendorChunk": "function",
-            "splitVendorChunkPlugin": "function",
             "transformWithEsbuild": "function",
             "version": "string",
           },
@@ -68,9 +69,13 @@ it('vite', async () => {
             "ESModulesEvaluator": "function",
             "EvaluatedModules": "function",
             "ModuleRunner": "function",
+            "createDefaultImportMeta": "function",
+            "createNodeImportMeta": "function",
             "createWebSocketModuleRunnerTransport": "function",
+            "normalizeModuleId": "function",
             "ssrDynamicImportKey": "string",
             "ssrExportAllKey": "string",
+            "ssrExportNameKey": "string",
             "ssrImportKey": "string",
             "ssrImportMetaKey": "string",
             "ssrModuleExportsKey": "string",
@@ -79,7 +84,7 @@ it('vite', async () => {
         "importMode": "dist",
         "package": {
           "name": "vite",
-          "version": "6.1.0",
+          "version": "7.3.0",
         },
       }
     `)
@@ -107,6 +112,7 @@ it('rollup', async () => {
           "./loadConfigFile": {
             "default": "object",
             "loadConfigFile": "function",
+            "module.exports": "object",
           },
           "./parseAst": {
             "parseAst": "function",
@@ -116,7 +122,7 @@ it('rollup', async () => {
         "importMode": "dist",
         "package": {
           "name": "rollup",
-          "version": "4.34.9",
+          "version": "4.54.0",
         },
       }
     `)
