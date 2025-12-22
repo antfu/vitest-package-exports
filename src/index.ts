@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises'
 import process from 'node:process'
+import { pathToFileURL } from 'node:url'
 import { findUp } from 'find-up-simple'
 import { dirname, join } from 'pathe'
 
@@ -102,13 +103,13 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
       exportsEntries.map(async ([key, value]) => {
         let obj: any
         if (importMode === 'package') {
-          obj = await import(join(pkg.name, key))
+          obj = await import(pathToFileURL(join(pkg.name, key)).toString())
         }
         else if (importMode === 'dist') {
-          obj = await import(join(pkgRoot, value))
+          obj = await import(pathToFileURL(join(pkgRoot, value)).toString())
         }
         else if (importMode === 'src') {
-          obj = await import(join(pkgRoot, resolveSourcePath(value)))
+          obj = await import(pathToFileURL(join(pkgRoot, resolveSourcePath(value))).toString())
         }
         return [key, Object.fromEntries(
           Object.entries(obj)
