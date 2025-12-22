@@ -1,7 +1,7 @@
 {
   "name": "vitest-package-exports",
   "type": "module",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "packageManager": "pnpm@10.26.1",
   "description": "A Vitest util to get all exported APIs of a package and prevent unintended breaking changes",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
