@@ -103,7 +103,7 @@ export async function getPackageExportsManifest(options: PackageExportsManifestO
       exportsEntries.map(async ([key, value]) => {
         let obj: any
         if (importMode === 'package') {
-          obj = await import(pathToFileURL(join(pkg.name, key)).toString())
+          obj = await import(join(pkg.name, key))
         }
         else if (importMode === 'dist') {
           obj = await import(pathToFileURL(join(pkgRoot, value)).toString())
