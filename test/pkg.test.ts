@@ -122,7 +122,7 @@ it('rollup - dist', async () => {
         "importMode": "dist",
         "package": {
           "name": "rollup",
-          "version": "4.54.0",
+          "version": "4.55.1",
         },
       }
     `)
@@ -160,7 +160,7 @@ it('rollup - package', async () => {
         "importMode": "package",
         "package": {
           "name": "rollup",
-          "version": "4.54.0",
+          "version": "4.55.1",
         },
       }
     `)
