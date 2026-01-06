@@ -90,7 +90,7 @@ it('vite', async () => {
     `)
 })
 
-it('rollup', async () => {
+it('rollup - dist', async () => {
   const manifest = await getPackageExportsManifest({
     importMode: 'dist',
     cwd: fileURLToPath(new URL('../node_modules/rollup', import.meta.url)),
@@ -120,6 +120,44 @@ it('rollup', async () => {
           },
         },
         "importMode": "dist",
+        "package": {
+          "name": "rollup",
+          "version": "4.54.0",
+        },
+      }
+    `)
+})
+
+it('rollup - package', async () => {
+  const manifest = await getPackageExportsManifest({
+    importMode: 'package',
+    cwd: fileURLToPath(new URL('../node_modules/rollup', import.meta.url)),
+  })
+
+  expect(manifest)
+    .toMatchInlineSnapshot(`
+      {
+        "exports": {
+          ".": {
+            "VERSION": "string",
+            "defineConfig": "function",
+            "rollup": "function",
+            "watch": "function",
+          },
+          "./getLogFilter": {
+            "getLogFilter": "function",
+          },
+          "./loadConfigFile": {
+            "default": "object",
+            "loadConfigFile": "function",
+            "module.exports": "object",
+          },
+          "./parseAst": {
+            "parseAst": "function",
+            "parseAstAsync": "function",
+          },
+        },
+        "importMode": "package",
         "package": {
           "name": "rollup",
           "version": "4.54.0",
