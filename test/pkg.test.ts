@@ -128,6 +128,45 @@ it('rollup - dist', async () => {
     `)
 })
 
+it('rollup - sequential', async () => {
+  const manifest = await getPackageExportsManifest({
+    importMode: 'dist',
+    sequence: 'sequential',
+    cwd: fileURLToPath(new URL('../node_modules/rollup', import.meta.url)),
+  })
+
+  expect(manifest)
+    .toMatchInlineSnapshot(`
+      {
+        "exports": {
+          ".": {
+            "VERSION": "string",
+            "defineConfig": "function",
+            "rollup": "function",
+            "watch": "function",
+          },
+          "./getLogFilter": {
+            "getLogFilter": "function",
+          },
+          "./loadConfigFile": {
+            "default": "object",
+            "loadConfigFile": "function",
+            "module.exports": "object",
+          },
+          "./parseAst": {
+            "parseAst": "function",
+            "parseAstAsync": "function",
+          },
+        },
+        "importMode": "dist",
+        "package": {
+          "name": "rollup",
+          "version": "4.55.1",
+        },
+      }
+    `)
+})
+
 it('rollup - package', async () => {
   const manifest = await getPackageExportsManifest({
     importMode: 'package',
