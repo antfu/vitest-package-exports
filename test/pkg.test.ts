@@ -84,7 +84,7 @@ it('vite', async () => {
         "importMode": "dist",
         "package": {
           "name": "vite",
-          "version": "7.3.0",
+          "version": "7.3.1",
         },
       }
     `)
@@ -122,7 +122,7 @@ it('rollup - dist', async () => {
         "importMode": "dist",
         "package": {
           "name": "rollup",
-          "version": "4.55.1",
+          "version": "4.57.1",
         },
       }
     `)
@@ -161,7 +161,7 @@ it('rollup - sequential', async () => {
         "importMode": "dist",
         "package": {
           "name": "rollup",
-          "version": "4.55.1",
+          "version": "4.57.1",
         },
       }
     `)
@@ -199,7 +199,7 @@ it('rollup - package', async () => {
         "importMode": "package",
         "package": {
           "name": "rollup",
-          "version": "4.55.1",
+          "version": "4.57.1",
         },
       }
     `)
