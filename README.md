@@ -1,3 +1,9 @@
+# DEPRECTED
+
+This package is DEPRECTED in favor of its successor [`tsnapi`](https://github.com/antfu/tsnapi). Consider migrating over.
+
+----
+
 # vitest-package-exports
 
 [![npm version][npm-version-src]][npm-version-href]
